@@ -36,7 +36,7 @@ for c in contours:
 	#cv2.putText(frame, "center", (cX - 20, cY - 20),
 	#			cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 2)
 	cv2.drawMarker(frame,(cX, cY),(0, 255, 0),markerSize=200,thickness=20)
-	print("hallo:" + cX + " " + cY)
+	print("hallo:" + str(cX) + " " + str(cY))
 #print(contours.__len__())
 #cv2.drawContours(im2, contours, 3, (0,255,0), 3)
 #cv2.drawContours(im2, contours, -1,(0,0,255),3)
