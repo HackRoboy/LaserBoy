@@ -36,6 +36,6 @@ def main(angle_phi, angle_delta) :
 	
 if __name__ == "__main__":
     # execute only if run as a script
-    main(45,45)
+    main(10,12)
 	
 	
