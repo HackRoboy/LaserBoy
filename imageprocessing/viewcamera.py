@@ -9,7 +9,7 @@ if hasattr(cv2, 'cv'):
     vs.set(cv2.cv.CV_CAP_PROP_FRAME_HEIGHT, 1242)
 else:
     vs.set(cv2.CAP_PROP_FRAME_WIDTH, 4416)
-    vs.set(cv2.CV_CAP_PROP_FRAME_HEIGHT, 1242)
+    vs.set(cv2.CAP_PROP_FRAME_HEIGHT, 1242)
 while True:
     ok, frame = vs.read()
     frame = frame[0:376, 0:650]
