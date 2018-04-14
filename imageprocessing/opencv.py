@@ -4,24 +4,24 @@ import numpy as np
 
 
 while(1):
-	frame = cv2.imread('plane.jpg')
+	frame = cv2.imread('photo1.JPG')
 	#img2 = img.astype(np.float32)
 	#print(img2.dtype)
 
 	hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
 
-	lower = np.array([0,100,200])
-	upper = np.array([30,255,255])
+	lower = np.array([-10,100,220])
+	upper = np.array([10,255,255])
 
 	mask = cv2.inRange(hsv, lower, upper)
 
 	res = cv2.bitwise_and(frame,frame, mask= mask)
 
 	cv2.namedWindow('frame',cv2.WINDOW_NORMAL)
-	cv2.resizeWindow('frame', 600,600)
+	cv2.resizeWindow('frame', 1000,1000)
 
 	cv2.namedWindow('res',cv2.WINDOW_NORMAL)
-	cv2.resizeWindow('res', 600,600)
+	cv2.resizeWindow('res', 1000,1000)
 
 	cv2.imshow('frame',frame)
 	#cv2.imshow('mask',mask)
