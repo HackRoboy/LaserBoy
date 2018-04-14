@@ -1,6 +1,11 @@
 import cv2
 import numpy as np
 vs = cv2.VideoCapture(0)
+#cv2.VideoCapture.set(CV_CAP_PROP_FRAME_WIDTH, 4416)
+#cv2.VideoCapture.set(CV_CAP_PROP_FRAME_HEIGHT, 1242)
+print(cv2.VideoCapture.get(CV_CAP_PROP_FRAME_WIDTH))
+cv2.VideoCapture.set(CV_CAP_PROP_FRAME_WIDTH, 4416)
+cv2.VideoCapture.set(CV_CAP_PROP_FRAME_HEIGHT, 1242)
 while True:
     ok, frame = vs.read()
     frame = frame[0:376, 0:650]
