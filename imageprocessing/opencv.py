@@ -4,14 +4,14 @@ import numpy as np
 
 
 while(1):
-	frame = cv2.imread('photo1.JPG')
+	frame = cv2.imread('photo7.JPG')
 	#img2 = img.astype(np.float32)
 	#print(img2.dtype)
 
 	hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
 
-	lower = np.array([-10,100,220])
-	upper = np.array([10,255,255])
+	lower = np.array([-30,100,150])
+	upper = np.array([30,255,255])
 
 	mask = cv2.inRange(hsv, lower, upper)
 
