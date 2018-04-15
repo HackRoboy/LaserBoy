@@ -24,7 +24,9 @@ def main(angle_phi, angle_delta) :
 	#b_angle_phi = angle_phi.to_bytes(1,'big')
 	#b_angle_delta = angle_delta.to_bytes(1,'big')
 	
-	MESSAGE = struct.pack(b'BB',angle_phi, angle_delta)
+	MESSAGE = struct.pack('>HH',angle_phi, angle_delta)
+	
+	print(MESSAGE)
 	
 	# convert & concatenate
 	#MESSAGE = (angle_phi & 0xFF) << 8 | (angle_delta & 0xFF)
