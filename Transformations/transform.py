@@ -1,4 +1,4 @@
-from IPython.display import display
+#from IPython.display import display
 import sympy as sy
 
 delta_vertikal = 240
@@ -12,7 +12,7 @@ z = 1000
 #T_laser_base
 
 
-sy.init_printing()
+#sy.init_printing()
 
 # declaring symbolic variables:
 theta_1, theta_2 = sy.symbols("theta_1 theta_2", real=True)
