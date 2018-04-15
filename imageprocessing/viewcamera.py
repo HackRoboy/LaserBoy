@@ -16,10 +16,16 @@ while True:
 
     hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
 
-    lower = np.array([0, 200, 200])
-    upper = np.array([5, 255, 255])
-    lower2 = np.array([170, 200, 200])
-    upper2 = np.array([180, 255, 255])
+    #chipbag settings
+    #lower = np.array([0, 200, 200])
+    #upper = np.array([5, 255, 255])
+    #lower2 = np.array([170, 200, 200])
+    #upper2 = np.array([180, 255, 255])
+
+    lower = np.array([0, 70, 200])
+    upper = np.array([5, 180, 255])
+    lower2 = np.array([170, 70, 200])
+    upper2 = np.array([180, 180, 255])
 
     mask = cv2.inRange(hsv, lower, upper)
     mask2 = cv2.inRange(hsv, lower2, upper2)
