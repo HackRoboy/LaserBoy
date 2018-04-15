@@ -67,7 +67,7 @@ a = res[0]
 
 #print(a[theta_1])
 
-main(30, 30)
+main(175, 175)
 
 print(angle_1)
 print(angle_2)
