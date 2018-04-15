@@ -12,30 +12,32 @@ UDP_PORT = 4210
 sock = socket.socket(socket.AF_INET, # Internet
                      socket.SOCK_DGRAM) # UDP
 
-def main(angle_phi, angle_delta) :
+def main(angle_theta_1, angle_theta_2) :
 	
-	angle_phi = int(angle_phi)
-	angle_delta = int(angle_delta)
+	angle_theta_1 = int(angle_theta_1)
+	angle_theta_2 = int(angle_theta_2)
 	
-	mylist = [angle_phi, angle_delta]
+	mylist = [angle_theta_1, angle_theta_2]
 	
 	# remember negative values
 	
-	#b_angle_phi = angle_phi.to_bytes(1,'big')
-	#b_angle_delta = angle_delta.to_bytes(1,'big')
+	#b_angle_theta_1 = angle_theta_1.to_bytes(1,'big')
+	#b_angle_theta_2 = angle_theta_2.to_bytes(1,'big')
 	
-	MESSAGE = struct.pack(b'BB',angle_phi, angle_delta)
+	MESSAGE = struct.pack('>HH',angle_theta_1, angle_theta_2)
+	
+	print(MESSAGE)
 	
 	# convert & concatenate
-	#MESSAGE = (angle_phi & 0xFF) << 8 | (angle_delta & 0xFF)
+	#MESSAGE = (angle_theta_1 & 0xFF) << 8 | (angle_theta_2 & 0xFF)
 	
-	#MESSAGE = (b_angle_phi & 0xFF) << 8 | (b_angle_delta & 0xFF)
+	#MESSAGE = (b_angle_theta_1 & 0xFF) << 8 | (b_angle_theta_2 & 0xFF)
 	
 	#send
 	sock.sendto(MESSAGE, (UDP_IP, UDP_PORT))
 	
 if __name__ == "__main__":
     # execute only if run as a script
-    main(10,12)
+    main(270,256)
 	
 	
