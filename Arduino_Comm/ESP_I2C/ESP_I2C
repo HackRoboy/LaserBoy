@@ -1,0 +1,136 @@
+#include <dxl_pro.h>
+#include <XL320.h>
+
+#include <Wire.h>
+
+#include <Servo.h>
+#include <ESP8266WiFi.h>
+#include <ESP8266WiFiAP.h>
+#include <ESP8266WiFiGeneric.h>
+#include <ESP8266WiFiMulti.h>
+#include <ESP8266WiFiScan.h>
+#include <ESP8266WiFiSTA.h>
+#include <ESP8266WiFiType.h>
+#include <WiFiClient.h>
+#include <WiFiClientSecure.h>
+#include <WiFiServer.h>
+#include <WiFiServerSecure.h>
+#include <WiFiUdp.h>
+
+// global decl
+
+char incomingPacket[255];
+WiFiUDP myUDP;
+
+//servo pins
+//#define SERVO_PHI_PIN 12
+//#define SERVO_DELTA_PIN 13
+//servos
+//Servo Servo_Phi;
+//Servo Servo_Delta;
+
+void setup()
+{
+  //Serial Monitor
+  Serial.begin(115200);
+  Serial.println();
+
+  Serial.println("Wifi-Test");
+
+  //WiFi connection
+  WiFi.begin("UnternehmerTUM", "");
+
+  Serial.print("Connecting");
+  while (WiFi.status() != WL_CONNECTED)
+  {
+    delay(500);
+    Serial.print(".");
+  }
+  Serial.println();
+
+  Serial.print("Connected, IP address: ");
+  Serial.println(WiFi.localIP());
+
+  //UDP setup
+  
+  unsigned int port = 4210;
+  myUDP.begin(port);
+/*
+  // Servo setup
+  Servo_Phi.attach(SERVO_PHI_PIN);
+  Servo_Delta.attach(SERVO_DELTA_PIN);
+  Servo_Phi.write(0);
+  Servo_Delta.write(0);
+*/
+}
+
+//mapping function
+/*
+int angle_to_step(int angle){
+  
+  int res = 1024;
+  int full_circle = 360;
+
+  return angle/full_circle*res;  
+  
+  
+}
+*/
+
+// map the angle to servo command
+short conv_servo(short angle){
+
+//angle of from 0 to 300°
+//servo is from 0 to 1023
+
+short lower_angle = 0;
+short upper_angle = 300;
+short lower_val = 0;
+short upper_val = 1023;
+
+return map(angle, lower_angle, upper_angle, lower_val, upper_val);  
+  
+}
+
+
+void loop() {
+  // put your main code here, to run repeatedly:
+  //listen for udp
+  int packetSize = myUDP.parsePacket();
+  if (packetSize)
+  {
+    Serial.printf("Received %d bytes from %s, port %d\n", packetSize, myUDP.remoteIP().toString().c_str(), myUDP.remotePort());
+    //read the incoming message
+    int len = myUDP.read(incomingPacket, 255);
+    if (len > 0)
+    {
+    incomingPacket[len] = 0;
+    }
+    Serial.printf("UDP packet contents: %s\n", incomingPacket, HEX);
+
+    //reassemble angles
+
+    short angle_phi = (incomingPacket[0] << 8) | incomingPacket[1] ;
+    short angle_delta = (incomingPacket[2] << 8 | incomingPacket[3]);
+
+    Serial.printf("Phi is %d\n", angle_phi);
+    Serial.printf("Delta is %d\n", angle_delta);
+
+
+    //convert to signal for servos
+    short sig_phi = (short) conv_servo(angle_phi);
+    short sig_delta = (short) conv_servo(angle_delta);
+
+    Serial.printf("Sending %d for phi and %d for delta\n", sig_phi, sig_delta);
+  
+
+    // set the servos 
+    //Servo_Phi.write(angle_phi);
+    //delay(200);
+    //Servo_Delta.write(angle_delta);
+    //delay(200);
+    
+  }
+
+
+}
