@@ -1,6 +1,9 @@
 #from IPython.display import display
 import sympy as sy
 
+import time
+from comms import main
+
 delta_vertikal = 240
 delta_horizontal = 250
 
@@ -41,4 +44,35 @@ print("this should be zero:")
 Zero = sy.simplify(T_base_laser*p_object-p_laser)                     
 
 
-sy.solve(Zero[1:3])
+res = sy.solve(Zero[1:3])
+
+print(res)
+print(".....")
+#print(res[1])
+
+angle_1 = []
+angle_2 = []
+j = 0
+
+for i in res : 
+	
+	angle_1.append(i[theta_1] + 150)
+	angle_2.append(i[theta_2] + 150)
+	j = j +1
+	
+
+a = res[0]
+
+#print(list(a.keys()))
+
+#print(a[theta_1])
+
+main(30, 30)
+
+print(angle_1)
+print(angle_2)
+time.sleep(2)
+main(angle_1[0], angle_2[0])
+#main(angle_1[1], angle_2[1])
+#main(angle_1[2], angle_2[2])
+#main(angle_1[3], angle_2[3])
