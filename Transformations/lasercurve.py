@@ -2,18 +2,28 @@ import time
 from comms import main
 
 import math
+import numpy
 
-x = range(0,2*math.Pi,0.1)
+x = numpy.arange(0,2*math.pi,0.3)
 
-horz_deflection = math.cos(x)
-vert_deflection = math.sin(x)
+print(x)
 
-max_angle = 30
+
+horz_deflection = numpy.sin(x)
+vert_deflection = numpy.cos(x)
+
+max_angle = 25
 
 horz_angle = horz_deflection*max_angle + 150
 vert_angle = vert_deflection*max_angle + 150
 
-for i in range(0,len(x))
+print(horz_angle)
+print(vert_angle)
 
-	main(horz_angle[i], vert_angle[i])
-	time.sleep(1)
+while True:
+	for i in range(0,len(x)):
+	
+	#print(".")
+
+		main(horz_angle[i], vert_angle[i])
+		time.sleep(0.3)
