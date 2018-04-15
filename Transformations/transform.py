@@ -1,4 +1,4 @@
-from IPython.display import display
+#from IPython.display import display
 import sympy as sy
 
 delta_vertikal = 240
@@ -12,7 +12,7 @@ z = 1000
 #T_laser_base
 
 
-sy.init_printing()
+#sy.init_printing()
 
 # declaring symbolic variables:
 theta_1, theta_2 = sy.symbols("theta_1 theta_2", real=True)
@@ -40,14 +40,5 @@ print(p_laser)
 print("this should be zero:")
 Zero = sy.simplify(T_base_laser*p_object-p_laser)                     
 
-display(Zero)
-#Zero[3] = 0
 
 sy.solve(Zero[1:3])
-
-#print("Vector of Unkowns xx.T = ")
-#xx = sy.Matrix(list(T_base_laser.atoms(sy.Symbol)))
-#display(xx.T_base_laser)
-#print("For equation HH.xx = mm, HH = ")
-#HH = KTM[:2, :].jacobian(xx)  # calculate the derivative for each unknown
-#display(HH)
