@@ -8,7 +8,7 @@ Tried to let roboy highlight objects he could detect with a laser-pointer.
 * WiFi Communication to the laser-pointer mount
 * Model to transform the laser-pointer position to movements of the laser-pointer mount
 
-[Dancing Servos](/presentation_and_assets/ezgif.com-video-to-gif.gif)
+https://github.com/HackRoboy/LaserBoy/blob/master/presentation_and_assets/ezgif.com-video-to-gif.gif
 
 ## /Arduino_Comm
 laser-pointer mount servo control and udp client/server (server: comms.py)
